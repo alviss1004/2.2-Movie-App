@@ -108,7 +108,7 @@ function MoviesPage() {
                       fontWeight={750}
                       fontFamily={"Trebuchet MS"}
                     >
-                      Search Results
+                      Search Results (movies)
                     </Typography>
                     <Divider sx={{ borderBottomWidth: 2 }} />
                     <MovieList

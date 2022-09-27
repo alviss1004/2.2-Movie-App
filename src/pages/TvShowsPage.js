@@ -106,7 +106,7 @@ function TvShowsPage() {
                       fontWeight={750}
                       fontFamily={"Trebuchet MS"}
                     >
-                      Search Results
+                      Search Results (tvshows)
                     </Typography>
                     <Divider sx={{ borderBottomWidth: 2 }} />
                     <MovieList
