@@ -36,7 +36,6 @@ function TvShowsPage() {
           `/discover/tv?api_key=${API_KEY}&page=${pageId}&with_genres=${genreId}`
         );
         setTvshows(res.data.results);
-        console.log("pageid", pageId);
         setError("");
       } catch (error) {
         console.log(error);
@@ -168,6 +167,7 @@ function TvShowsPage() {
                       }}
                       count={10}
                       color="error"
+                      defaultPage={parseInt(pageId)}
                       renderItem={(item) => (
                         <PaginationItem
                           component={Link}
