@@ -9,16 +9,9 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import Pagination from "@mui/material/Pagination";
-import { styled } from "@mui/material/styles";
 import Divider from "@mui/material/Divider";
 import { PaginationItem } from "@mui/material";
 import { Link, useParams, useSearchParams } from "react-router-dom";
-
-const CenterPagination = styled(Pagination)(({ theme }) => ({
-  ul: {
-    justifyContent: "center",
-  },
-}));
 
 function MoviesPage() {
   const [movies, setMovies] = useState([]);
@@ -166,15 +159,20 @@ function MoviesPage() {
                       md={3}
                       lg={2}
                     />
-                    <CenterPagination
+                    <Pagination
                       size="large"
-                      sx={{ mt: 10, mb: 5 }}
+                      sx={{
+                        mt: 10,
+                        mb: 5,
+                        display: "flex",
+                        justifyContent: "center",
+                      }}
                       count={10}
                       color="error"
                       renderItem={(item) => (
                         <PaginationItem
                           component={Link}
-                          to={`/movies/${item.page}`}
+                          to={`/tvshows/${item.page}`}
                           {...item}
                         />
                       )}
