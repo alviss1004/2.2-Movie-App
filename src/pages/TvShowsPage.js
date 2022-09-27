@@ -44,6 +44,7 @@ function TvShowsPage() {
       setLoading(false);
     };
     getTvshows();
+    window.scrollTo(0, 0);
   }, [pageId, genreId]);
 
   useEffect(() => {
@@ -110,6 +111,7 @@ function TvShowsPage() {
                     <Divider sx={{ borderBottomWidth: 2 }} />
                     <MovieList
                       movies={searchedMovies}
+                      type={1}
                       spacing={5}
                       xs={6}
                       md={4}

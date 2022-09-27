@@ -51,6 +51,7 @@ function HomePage() {
       setLoading(false);
     };
     getPopularMovies();
+    window.scrollTo(0, 0);
   }, []);
 
   useEffect(() => {

@@ -44,6 +44,7 @@ function MoviesPage() {
       setLoading(false);
     };
     getMovies();
+    window.scrollTo(0, 0);
   }, [pageId, genreId]);
 
   useEffect(() => {

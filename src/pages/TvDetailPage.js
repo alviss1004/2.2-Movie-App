@@ -42,6 +42,7 @@ function TvDetailPage() {
         setLoading(false);
       };
       getMovie();
+      window.scrollTo(0, 0);
     }
   }, [params]);
 
