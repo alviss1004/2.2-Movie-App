@@ -5,13 +5,17 @@ import { CardActionArea } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 
-function MovieCard({ movie }) {
+function MovieCard({ movie, type }) {
   const navigate = useNavigate();
   return (
     <motion.div whileHover={{ scale: 1.15 }}>
       <Card
         onClick={() => {
-          navigate(`/movie/${movie.id}`);
+          if (type === 1) {
+            navigate(`/tvshow/${movie.id}`);
+          } else {
+            navigate(`/movie/${movie.id}`);
+          }
         }}
       >
         <CardActionArea>

@@ -2,7 +2,8 @@ import * as React from "react";
 import { Routes, Route } from "react-router-dom";
 import BlankLayout from "../layouts/BlankLayout";
 import MainLayout from "../layouts/MainLayout";
-import DetailPage from "../pages/DetailPage";
+import TvDetailPage from "../pages/TvDetailPage";
+import MovieDetailPage from "../pages/MovieDetailPage";
 import HomePage from "../pages/HomePage";
 import LoginPage from "../pages/LoginPage";
 import NotFoundPage from "../pages/NotFoundPage";
@@ -22,7 +23,8 @@ function Router() {
         }
       >
         <Route index element={<HomePage />} />
-        <Route path="movie/:id" element={<DetailPage />} />
+        <Route path="movie/:id" element={<MovieDetailPage />} />
+        <Route path="tvshow/:id" element={<TvDetailPage />} />
         <Route path="tvshows/:pageId" element={<TvShowsPage />} />
         <Route path="movies/:pageId" element={<MoviesPage />} />
       </Route>

@@ -115,6 +115,7 @@ function MoviesPage() {
                     <Divider sx={{ borderBottomWidth: 2, mt: 1 }} />
                     <MovieList
                       movies={movies}
+                      type={2}
                       spacing={12}
                       xs={6}
                       md={3}
