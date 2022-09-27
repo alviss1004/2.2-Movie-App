@@ -31,7 +31,7 @@ function TvDetailPage() {
         setLoading(true);
         try {
           const res = await apiService.get(
-            `/tv/${params.id}?api_key=${API_KEY}`
+            `/tv/${params.id}?api_key=${API_KEY}&language=en-US`
           );
           setMovie(res.data);
           setError("");

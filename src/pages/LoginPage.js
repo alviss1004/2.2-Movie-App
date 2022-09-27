@@ -58,9 +58,9 @@ function LoginPage() {
           boxShadow={6}
           sx={{
             backgroundColor: "#0E0D0D",
-            height: "55vh",
+            height: "58vh",
             minHeight: "450px",
-            width: "20vw",
+            width: "22vw",
             minWidth: "400px",
             display: "flex",
             alignItems: "center",

@@ -9,24 +9,20 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import Pagination from "@mui/material/Pagination";
-import { styled } from "@mui/material/styles";
 import Divider from "@mui/material/Divider";
 import { PaginationItem } from "@mui/material";
-import { Link, useParams } from "react-router-dom";
-
-const CenterPagination = styled(Pagination)(({ theme }) => ({
-  ul: {
-    justifyContent: "center",
-  },
-}));
+import { Link, useParams, useSearchParams } from "react-router-dom";
 
 function TvShowsPage() {
   const [tvshows, setTvshows] = useState([]);
   const [genres, setGenres] = useState([]);
   const [genreId, setGenreId] = useState("");
+  const [searchedMovies, setSearchedMovies] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const { pageId } = useParams();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const q = searchParams.get("filter");
 
   const handleChange = (event) => {
     setGenreId(event.target.value);
@@ -67,6 +63,24 @@ function TvShowsPage() {
     getGenres();
   }, []);
 
+  useEffect(() => {
+    const searchTvs = async () => {
+      setLoading(true);
+      try {
+        const res = await apiService.get(
+          `/search/tv?api_key=${API_KEY}&query=${q}&language=en-US&page=1`
+        );
+        setSearchedMovies(res.data.results);
+        setError("");
+      } catch (error) {
+        console.log(error);
+        setError(error.message);
+      }
+      setLoading(false);
+    };
+    searchTvs();
+  }, [q]);
+
   return (
     <>
       <Container
@@ -81,6 +95,30 @@ function TvShowsPage() {
           <Box sx={{ position: "relative", height: 1 }}>
             {loading ? (
               <LoadingScreen />
+            ) : q ? (
+              <>
+                {error ? (
+                  <Alert severity="error">{error}</Alert>
+                ) : (
+                  <>
+                    <Typography
+                      fontSize={37}
+                      fontWeight={750}
+                      fontFamily={"Trebuchet MS"}
+                    >
+                      Search Results
+                    </Typography>
+                    <Divider sx={{ borderBottomWidth: 2 }} />
+                    <MovieList
+                      movies={searchedMovies}
+                      spacing={5}
+                      xs={6}
+                      md={4}
+                      lg={1.5}
+                    />
+                  </>
+                )}
+              </>
             ) : (
               <>
                 {error ? (
@@ -115,14 +153,19 @@ function TvShowsPage() {
                     <MovieList
                       movies={tvshows}
                       type={1}
-                      spacing={12}
+                      spacing={8}
                       xs={6}
                       md={3}
                       lg={2}
                     />
-                    <CenterPagination
+                    <Pagination
                       size="large"
-                      sx={{ mt: 10, mb: 5 }}
+                      sx={{
+                        mt: 10,
+                        mb: 5,
+                        display: "flex",
+                        justifyContent: "center",
+                      }}
                       count={10}
                       color="error"
                       renderItem={(item) => (

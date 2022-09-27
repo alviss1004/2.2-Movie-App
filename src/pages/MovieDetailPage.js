@@ -31,7 +31,7 @@ function DetailPage() {
         setLoading(true);
         try {
           const res = await apiService.get(
-            `/movie/${params.id}?api_key=${API_KEY}`
+            `/movie/${params.id}?api_key=${API_KEY}&language=en-US`
           );
           setMovie(res.data);
           setError("");
