@@ -47,10 +47,18 @@ function TvDetailPage() {
   }, [params]);
 
   return (
-    <Container sx={{ my: 3 }}>
-      <Breadcrumbs aria-label="breadcrumb" sx={{ mb: 4 }}>
+    <Container sx={{ mt: 10 }}>
+      <Breadcrumbs aria-label="breadcrumb">
         <Link underline="hover" color="inherit" component={RouterLink} to="/">
-          Movie App
+          Home
+        </Link>
+        <Link
+          underline="hover"
+          color="inherit"
+          component={RouterLink}
+          to="/tvshows/1"
+        >
+          Tvshows
         </Link>
         <Typography color="text.primary">{movie?.original_name}</Typography>
       </Breadcrumbs>

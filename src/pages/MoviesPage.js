@@ -17,6 +17,7 @@ function MoviesPage() {
   const [movies, setMovies] = useState([]);
   const [genres, setGenres] = useState([]);
   const [genreId, setGenreId] = useState("");
+  const [totalPages, setTotalPages] = useState("");
   const [searchedMovies, setSearchedMovies] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
   const [loading, setLoading] = useState(true);
@@ -33,9 +34,10 @@ function MoviesPage() {
       setLoading(true);
       try {
         const res = await apiService.get(
-          `/discover/movie?api_key=${API_KEY}&page=${pageId}&with_genres=${genreId}`
+          `/discover/movie?api_key=${API_KEY}&language=en-US&page=${pageId}&with_genres=${genreId}`
         );
         setMovies(res.data.results);
+        setTotalPages(res.data.total_pages);
         setError("");
       } catch (error) {
         console.log(error);
@@ -52,7 +54,7 @@ function MoviesPage() {
       setLoading(true);
       try {
         const res = await apiService.get(
-          `/genre/movie/list?api_key=${API_KEY}`
+          `/genre/movie/list?api_key=${API_KEY}&language=en-US`
         );
         setGenres(res.data.genres);
         setError("");
@@ -168,12 +170,13 @@ function MoviesPage() {
                         display: "flex",
                         justifyContent: "center",
                       }}
-                      count={10}
+                      count={totalPages}
+                      defaultPage={parseInt(pageId)}
                       color="error"
                       renderItem={(item) => (
                         <PaginationItem
                           component={Link}
-                          to={`/tvshows/${item.page}`}
+                          to={`/movies/${item.page}`}
                           {...item}
                         />
                       )}

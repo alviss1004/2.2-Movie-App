@@ -17,6 +17,7 @@ function TvShowsPage() {
   const [tvshows, setTvshows] = useState([]);
   const [genres, setGenres] = useState([]);
   const [genreId, setGenreId] = useState("");
+  const [totalPages, setTotalPages] = useState("");
   const [searchedMovies, setSearchedMovies] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -33,9 +34,10 @@ function TvShowsPage() {
       setLoading(true);
       try {
         const res = await apiService.get(
-          `/discover/tv?api_key=${API_KEY}&page=${pageId}&with_genres=${genreId}`
+          `/discover/tv?api_key=${API_KEY}&language=en-US&page=${pageId}&with_genres=${genreId}`
         );
         setTvshows(res.data.results);
+        setTotalPages(res.data.total_pages);
         setError("");
       } catch (error) {
         console.log(error);
@@ -167,7 +169,7 @@ function TvShowsPage() {
                         display: "flex",
                         justifyContent: "center",
                       }}
-                      count={10}
+                      count={totalPages}
                       color="error"
                       defaultPage={parseInt(pageId)}
                       renderItem={(item) => (

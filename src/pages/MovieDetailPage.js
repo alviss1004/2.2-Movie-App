@@ -46,12 +46,20 @@ function DetailPage() {
   }, [params]);
 
   return (
-    <Container sx={{ my: 3 }}>
-      <Breadcrumbs aria-label="breadcrumb" sx={{ mb: 4 }}>
+    <Container sx={{ mt: 10 }}>
+      <Breadcrumbs aria-label="breadcrumb">
         <Link underline="hover" color="inherit" component={RouterLink} to="/">
-          Movie App
+          Home
         </Link>
-        <Typography color="text.primary">{movie?.name}</Typography>
+        <Link
+          underline="hover"
+          color="inherit"
+          component={RouterLink}
+          to="/movies/1"
+        >
+          Movies
+        </Link>
+        <Typography color="text.primary">{movie?.original_title}</Typography>
       </Breadcrumbs>
       <Box sx={{ position: "relative", height: 1 }}>
         {loading ? (
